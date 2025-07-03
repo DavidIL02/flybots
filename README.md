@@ -1,70 +1,98 @@
-# Bar La Esquina - Chatbot Web + n8n + OpenAI + Google Sheets
+# Flybots - Chatbot Web para Bares y Restaurantes (SaaS)
 
-Chat web interactivo para pedidos en mesa en bares, conectado con IA y menú dinámico en Google Sheets, desplegado con n8n.
-
----
-
-## 📸 Descripción del proyecto
-
-- **Interfaz web tipo WhatsApp** para que los clientes hagan pedidos escaneando un QR desde la mesa.
-- **Respuestas automáticas y personalizadas** gracias a un agente de OpenAI configurado como camarero virtual.
-- **Consulta del menú en tiempo real** desde Google Sheets.
-- **Pedidos confirmados** se notifican al personal por Telegram.
-- **Soporte para múltiples idiomas:** español y gallego.
-- **Sistema modular, ampliable y personalizable.**
+Chat web interactivo para pedidos en mesa, pensado para escanear un QR y abrir un chat conectado a n8n. Ideal para bares, restaurantes y cafeterías que quieren digitalizar la experiencia de atención al cliente.
 
 ---
 
-## 🚀 Funcionalidades principales
+## 🚀 ¿Qué es Flybots?
 
-- Animación de “...” mientras responde la IA.
-- Reconocimiento automático del número de mesa desde la URL.
-- Bienvenida visual con emojis y mensaje personalizado.
-- Gestión de menú, precios y descripciones vía Google Sheets.
-- Confirmación de pedidos y envío automático a Telegram.
-- Estructura lista para añadir grabación y envío de mensajes de voz.
-
----
-
-## 🛠️ Instalación y uso en local
-
-1. **Clona el repositorio:**
-    ```bash
-    git clone https://github.com/josefrancisco7/chatbotbar.git
-    cd chatbotbar
-    ```
-
-2. **Abre el archivo `index.html` en tu navegador** para pruebas en local.
-    - Para pruebas con QR y mesas:  
-      `http://127.0.0.1:5501/index.html?mesa=7`
-
-3. **Configura tu servidor n8n** (ver instrucciones abajo).
+- **Interfaz web tipo WhatsApp**: El cliente escanea un QR en la mesa y accede a un chat sencillo y directo.
+- **Respuestas automáticas**: Un agente virtual (IA vía n8n/OpenAI) responde y gestiona pedidos.
+- **Menú dinámico**: Integración con Google Sheets para mostrar productos y precios en tiempo real.
+- **Notificaciones al staff**: Los pedidos confirmados se envían automáticamente a Telegram o cualquier canal soportado por n8n.
+- **Multi-idioma**: Preparado para español, gallego y fácil de ampliar.
+- **Fácilmente personalizable**: Branding, colores y textos adaptables.
 
 ---
 
-## 🧩 Integración con n8n
+## 🛠️ Mejoras implementadas respecto a la versión original
 
-- Importa el flujo **(archivo `n8n-workflow.json` incluido en este repo)** directamente en tu instancia de n8n.
-- Necesitas configurar credenciales de Google Sheets, OpenAI y Telegram en n8n.
-- El flujo gestiona la lógica de pedidos, confirmaciones y envío a Telegram.
-
----
-
-## 🗃️ Menú dinámico en Google Sheets
-
-- El menú, los precios y las descripciones se leen en tiempo real de Google Sheets.
-- Puedes ampliar los productos fácilmente editando la hoja compartida.
+- Código modular y limpio (separación de lógica de UI, API y utilidades).
+- Configuración del endpoint de n8n por variable (no hardcodeado).
+- Mejor manejo de errores y feedback al usuario.
+- Preparado para internacionalización y personalización.
+- Comentarios y estructura lista para escalar.
 
 ---
 
-## ✨ Puntos faltantes / Mejoras pendientes
+## 💡 ¿Por qué migrar a un framework (React, Vue, Svelte)?
 
-- [ ] **Desplegar n8n en un servidor externo** (Hetzner, DigitalOcean, etc.) para acceso público.
-- [ ] **Agregar función de audio:** permitir grabar y enviar mensajes de voz desde el chat web.
-- [ ] **Comprar el dominio y que funcione todo en conjunto** 
-- [ ] **Modificar el js para poner la url del dominio de n8n** 
+- **Escalabilidad**: Frameworks permiten manejar componentes complejos, estados y rutas de forma más robusta.
+- **Mantenibilidad**: Mejor organización del código, pruebas y colaboración en equipo.
+- **Integraciones**: Más fácil añadir autenticación, dashboards, analíticas, etc.
+- **Performance**: Mejor gestión del DOM y optimización para apps grandes.
+- **Ecosistema**: Acceso a librerías modernas y soporte de la comunidad.
+
+*Para MVP y prototipos, vanilla JS es suficiente. Para SaaS serio y multi-cliente, migrar a un framework es recomendable.*
 
 ---
-=======
-# Chatbotbar
->>>>>>> 9afef45805e2b22d16739b21678702e415b81f4f
+
+## 🏪 ¿Por qué Flybots es ideal para tu negocio?
+
+- Digitaliza la atención sin apps ni instalaciones.
+- Reduce errores y tiempos de espera.
+- Mejora la experiencia del cliente.
+- Fácil de desplegar y personalizar para cada local.
+
+---
+
+## 🔗 ¿Cómo funciona?
+
+1. El cliente escanea un QR en la mesa.
+2. Se abre una web con el chat.
+3. El cliente escribe su pedido.
+4. El mensaje llega a n8n, que lo procesa y responde.
+5. El staff recibe el pedido por Telegram o similar.
+
+---
+
+## ⚙️ Instalación y despliegue
+
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/DavidIL02/flybots.git
+   cd flybots
+   ```
+2. Abre `index.html` en tu navegador para pruebas locales.
+3. Configura tu endpoint de n8n en el código o como variable global JS.
+4. Despliega en Netlify, Vercel o cualquier hosting estático.
+
+---
+
+## 🔒 Seguridad y privacidad
+
+- No se almacena información personal del cliente en el frontend.
+- Toda la lógica sensible se gestiona en n8n (backend).
+- Recomendado usar HTTPS y dominios propios en producción.
+
+---
+
+## ✨ Mejoras futuras sugeridas
+
+- [ ] Migrar a framework moderno para escalabilidad.
+- [ ] Añadir grabación/envío de audio.
+- [ ] Panel de administración para el local.
+- [ ] Analíticas de uso y satisfacción.
+- [ ] Integración con sistemas de pago.
+
+---
+
+## 📞 Contacto y soporte
+
+¿Quieres una demo o soporte? Contáctanos vía GitHub o email.
+
+---
+
+## Licencia
+
+MIT
