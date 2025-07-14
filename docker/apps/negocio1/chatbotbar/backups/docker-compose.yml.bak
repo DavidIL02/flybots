@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n:latest  # Always pulls the latest stable n8n
+    container_name: chatbotbar-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"  # Expose n8n on port 5678
+    environment:
+      # === Basic Auth (email/password login) ===
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=your@email.com      # <-- Set your email here
+      - N8N_BASIC_AUTH_PASSWORD=yourpassword    # <-- Set a strong password here
+
+      # === General Settings ===
+      - N8N_HOST=0.0.0.0
+      - N8N_PROTOCOL=http
+      - N8N_PORT=5678
+      - N8N_SECURE_COOKIE=false  # Disable secure cookies (for HTTP, not HTTPS)
+      - TZ=Europe/Madrid         # Set your timezone
+
+      # === Diagnostics & Telemetry ===
+      - N8N_DIAGNOSTICS_ENABLED=true  # Set to false if you want to disable telemetry
+
+      # === Optional: Disable cookies entirely (stateless, not recommended for all setups) ===
+      # n8n does not support full stateless mode, but you can minimize cookie usage by not enabling session features.
+
+    volumes:
+      - ./n8n_data:/home/node/.n8n  # Persist workflows, credentials, etc.
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5678/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+# =========================
+# USAGE:
+# 1. Replace N8N_BASIC_AUTH_USER and N8N_BASIC_AUTH_PASSWORD with your credentials.
+# 2. Run: docker-compose up -d
+# 3. Access n8n at http
